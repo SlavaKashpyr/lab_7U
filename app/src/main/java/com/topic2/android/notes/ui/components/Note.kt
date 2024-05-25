@@ -23,7 +23,8 @@ import com.topic2.android.notes.util.fromHex
 fun Note(
     note: NoteModel,
     onNoteClick: (NoteModel) -> Unit = {},
-    onNoteCheckedChange: (NoteModel) -> Unit = {}
+    onNoteCheckedChange: (NoteModel) -> Unit = {},
+    isSelected: Boolean
 ) {
     val background = if (isSelected)
         Color.LightGray
@@ -74,6 +75,7 @@ fun Note(
 private fun NotePreview() {
 
     Note(
+        isSelected = true,
         note = NoteModel(
             1,
             "Заметки 1",

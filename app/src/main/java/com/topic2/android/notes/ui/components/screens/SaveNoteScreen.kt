@@ -69,7 +69,6 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
     val moveNoteToTrashDialogShownState: MutableState<Boolean> = rememberSaveable {
         mutableStateOf(false)
     }
-
     BackHandler (
         onBack = {
             if (bottomDrawerState.isOpen) {
@@ -79,11 +78,11 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
             }
         }
     )
-
     Scaffold(topBar = {
         val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
         SaveNoteTopAppBar(
-            isEditingMode = isEditingMode, onBackClick = {
+            isEditingMode = isEditingMode,
+            onBackClick = {
                 NotesRouter.navigateTo(Screen.Notes)
             },
             onSaveNoteClick = {
@@ -108,16 +107,16 @@ fun SaveNoteScreen(viewModel: MainViewModel) {
                         }
                     )
                 },
-        content = {
-            SaveNoteContent(
-                note = noteEntry,
-                onNoteChange = { updateNoteEntry ->
-                    viewModel.onNoteEntryChange(updateNoteEntry)
+                content = {
+                    SaveNoteContent(
+                        note = noteEntry,
+                        onNoteChange = { updateNoteEntry ->
+                            viewModel.onNoteEntryChange(updateNoteEntry)
+                        }
+                    )
                 }
             )
         }
-    )
-}
     )
     if (moveNoteToTrashDialogShownState.value) {
         AlertDialog(
@@ -167,7 +166,7 @@ private fun SaveNoteTopAppBar(
                 color = MaterialTheme.colors.onPrimary
             )
         },
-                navigationIcon = {
+        navigationIcon = {
             IconButton(onClick = onBackClick) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
@@ -208,6 +207,7 @@ private fun SaveNoteTopAppBar(
         }
     )
 }
+
 
 
 @Composable
@@ -345,6 +345,7 @@ private fun ColorPicker(
 }
 
 
+
 @Composable
 fun ColorItem(
     color: ColorModel,
@@ -376,6 +377,15 @@ fun ColorItem(
 
 
 
+
+@Preview
+@Composable
+fun ColorItemPreview() {
+    ColorItem(ColorModel.DEFAULT) {}
+}
+
+
+
 @Preview
 @Composable
 fun ColorPickerPreview() {
@@ -388,11 +398,6 @@ fun ColorPickerPreview() {
     ) { }
 }
 
-@Preview
-@Composable
-fun ColorItemPreview() {
-    ColorItem(ColorModel.DEFAULT) {}
-}
 
 
 @Preview
@@ -407,6 +412,8 @@ fun SaveNoteTopAppBarPreview() {
     )
 }
 
+
+
 @Preview
 @Composable
 fun SaveNoteContentPreview() {
@@ -415,6 +422,7 @@ fun SaveNoteContentPreview() {
         onNoteChange = {}
     )
 }
+
 
 
 @Preview
