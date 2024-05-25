@@ -117,6 +117,28 @@ private fun SaveNoteTopAppBar(
 
 
 @Composable
+private fun PickedColor(color: ColorModel) {
+    Row (
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Picked color", modifier = Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+        NoteColor(
+            color = Color.fromHex(color.hex), size = 40.dp,
+            border = 1.dp,
+            modifier = Modifier.padding(4.dp)
+        )
+    }
+}
+
+
+
+@Composable
 private fun ColorPicker(
     colors: List<ColorModel>,
     onColorSelect: (ColorModel) -> Unit
@@ -208,4 +230,11 @@ fun SaveNoteTopAppBarPreview() {
         onOpenColorPickerClick = {},
         onDeleteNoteClick = {}
     )
+}
+
+
+@Preview
+@Composable
+fun PickedColorPreview() {
+    PickedColor(ColorModel.DEFAULT)
 }
